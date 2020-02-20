@@ -20,15 +20,13 @@ require('./config/passport')(passport)
 
 //connect to mongoose
 mongoose.connect(db.mongoURI, {
-
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(function () {
     console.log('mongodb connected')
-}).catch(
-    function (err) {
+}).catch(function (err) {
         console.log(err)
-    })
+});
 
 
 
@@ -80,7 +78,7 @@ app.use(function (req, res, next) {
 app.get('/', function (req, res) {
     var title = "Welcome To Video Game Library!"
     res.render('index', {
-        title: title,
+        title: title
     });
 });
 
@@ -90,11 +88,6 @@ app.get('/about', function (req, res) {
 
 
 //Game Entry Crud route
-
-
-
-
-
 
 app.use('/game', games);
 app.use('/users', users)

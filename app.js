@@ -24,7 +24,6 @@ mongoose.connect(db.mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(function () {
-
     console.log('mongodb connected')
 }).catch(
     function (err) {
@@ -45,14 +44,14 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.use(methodOveride('_method'))    
+app.use(methodOveride('_method'))
 
 
 //express session
 app.use(session({
     secret: 'secret',
-    resave:true,
-    saveUninitialized:true
+    resave: true,
+    saveUninitialized: true
 }))
 
 app.use(passport.initialize())
@@ -65,10 +64,10 @@ app.use(flash());
 
 
 //Global varaibles for flash messaging
-app.use(function(req,res,next){
+app.use(function (req, res, next) {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
-    res.locals.error= req.flash('error');
+    res.locals.error = req.flash('error');
     res.locals.user = req.user || null;
     next();
 })
@@ -98,13 +97,13 @@ app.get('/about', function (req, res) {
 
 
 app.use('/game', games);
-app.use('/users',users)
+app.use('/users', users)
 
-var port = process.env.port ||  5000
+var port = process.env.port || 5000
 
 
 app.listen(port, function () {
 
     console.log("Server is running on 5000")
-;
+        ;
 })
